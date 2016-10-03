@@ -1,12 +1,5 @@
 package com.crossover.trial.journals.rest;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
-
-import java.util.List;
-import java.util.Optional;
-
 import com.crossover.trial.journals.Application;
 import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.model.Publisher;
@@ -23,6 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -149,7 +148,13 @@ public class JournalServiceTest {
 		assertEquals(1, journals.size());
 		journals = journalService.listAll(getUser("user1"));
 		assertEquals(1, journals.size());
-	}
+    }
+
+    @Test
+    public void findJournalInPublishedDate() {
+        List<Journal> journalList = journalService.findInPublishedDate(LocalDate.now());
+        assertNotNull(journalList);
+    }
 
 	protected User getUser(String name) {
 		Optional<User> user = userService.getUserByLoginName(name);

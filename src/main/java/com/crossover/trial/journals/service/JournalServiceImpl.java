@@ -11,8 +11,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -96,5 +98,13 @@ public class JournalServiceImpl implements JournalService {
             throw new ServiceException("Journal cannot be removed");
         }
         journalRepository.delete(journal);
+    }
+
+    @Override
+    public List<Journal> findInPublishedDate(LocalDate date) {
+        Date publishDate = java.sql.Date.valueOf(date);
+        Date publishDateEnd = java.sql.Date.valueOf(date.plusDays(1));
+
+        return journalRepository.findBetweenPublishDates(publishDate, publishDateEnd);
     }
 }

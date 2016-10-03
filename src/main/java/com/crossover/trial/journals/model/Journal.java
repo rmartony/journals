@@ -1,14 +1,7 @@
 package com.crossover.trial.journals.model;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
 
 @Entity
 public class Journal {
@@ -81,5 +74,13 @@ public class Journal {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getJournalInfo() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Journal Name: ").append(this.getName()).append(System.lineSeparator());
+        stringBuilder.append("Journal publish date: ").append(this.getPublishDate()).append(System.lineSeparator());
+        // ... add additional Journal info here
+        return stringBuilder.toString();
     }
 }
