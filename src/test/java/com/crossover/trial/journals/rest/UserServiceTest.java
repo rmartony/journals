@@ -60,6 +60,7 @@ public class UserServiceTest {
         Optional<User> user = userService.getUserByLoginName("publisher1");
         assertTrue(user.isPresent());
 
+        // subscribe publisher1 to category id 2
         final Long categoryId = 2L;
         try {
             userService.subscribe(user.get(), categoryId);
