@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Created by rafa on 3/10/2016.
+ * Created by rmartony on 2/18/2017.
  */
 
 public class ScheduleService {
