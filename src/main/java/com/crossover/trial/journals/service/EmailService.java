@@ -29,10 +29,12 @@ public class EmailService {
         msg.setText(text);
 
         try {
-            log.info("About to send email with subject '" + subject + "' and body '" + text + "'");
+            if (log.isDebugEnabled()) {
+                log.debug("About to send email with subject '" + subject + "' and body '" + text + "'");
+            }
             mailSender.send(msg);
         } catch (MailException e) {
-            throw new ServiceException("Error ocurred while sending email message", e);
+            throw new ServiceException("Error ocurred while sending email message to " + msg.getTo(), e);
         }
     }
 
