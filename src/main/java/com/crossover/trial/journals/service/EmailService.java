@@ -9,6 +9,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,17 +31,21 @@ public class EmailService {
 
         try {
             if (log.isDebugEnabled()) {
-                log.debug("About to send email with subject '" + subject + "' and body '" + text + "'");
+                log.debug("About to send email to: ");
+                if (to != null && to.length > 0) {
+                    log.debug(Arrays.toString(msg.getTo()));
+                }
+                log.debug("with subject '" + subject + "' and body '" + text + "'");
             }
             mailSender.send(msg);
         } catch (MailException e) {
-            throw new ServiceException("Error ocurred while sending email message to " + msg.getTo(), e);
+            throw new ServiceException("Error ocurred while sending email message to " + Arrays.toString(msg.getTo()), e);
         }
     }
 
     public void sendMessage(List<User> userList, String subject, String text) {
         List<String> emailList = new ArrayList<>(userList.size());
-        userList.forEach(u -> emailList.add(u.getLoginName()));
+        userList.forEach(u -> emailList.add(u.getEmail()));
         sendMessage(emailList.toArray(new String[]{}), subject, text);
     }
 

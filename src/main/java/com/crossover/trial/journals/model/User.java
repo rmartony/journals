@@ -1,20 +1,10 @@
 package com.crossover.trial.journals.model;
 
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -30,6 +20,9 @@ public class User {
 
 	@Column(nullable = false)
 	private String pwd;
+
+	@Column(nullable = false)
+	private String email;
 
 	@Column(nullable = false)
 	private Boolean enabled;
@@ -56,6 +49,14 @@ public class User {
 
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Long getId() {

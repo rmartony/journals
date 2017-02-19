@@ -1,7 +1,7 @@
 Considerations
 
 - Prerequisites remain unchanged except for spring-boot-starter-mail and javax.mail maven dependencies that were added for sending email messages.
-- No database changes were performed.
+- Database has been changed, users have now email address attribute.
 
 - Before running application please edit "application.properties" to set up SMTP host, username and password.
 

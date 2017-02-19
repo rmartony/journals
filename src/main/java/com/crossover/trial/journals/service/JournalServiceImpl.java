@@ -75,7 +75,7 @@ public class JournalServiceImpl implements JournalService {
 
         // send emails for subscribed users for the category categoryId
         List<User> userList = subscriptionService.getUsersSubscribedInCategory(categoryId);
-        emailService.sendMessage(userList, "New Journal published", "Dear user, there is a new Journal published in the category (" + category.getName() + ") you are subscribed.");
+        emailService.sendMessage(userList, "New Journal published", "Dear user, there is a new Journal '" + journal.getName() + "' published in the category (" + category.getName() + ") you are subscribed.");
 
         return result;
     }

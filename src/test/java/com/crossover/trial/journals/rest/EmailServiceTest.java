@@ -29,7 +29,7 @@ public class EmailServiceTest {
 
     @Test
     public void sendSingleEmailMessageTest() {
-        String[] to = new String[]{"yyy@mailinator.com"};
+        String[] to = new String[]{"user1@mailinator.com"};
         emailService.sendMessage(to, "Test subject", "This is a test email");
     }
 
